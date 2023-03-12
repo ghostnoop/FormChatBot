@@ -1,0 +1,117 @@
+{
+  "Question": [
+    {
+      "title": "ФИО",
+      "answers": null,
+      "is_admin_only": true
+    },
+    {
+      "title": "Пол",
+      "answers": [
+        "Мужчина",
+        "Женщина"
+      ],
+      "is_admin_only": false
+    },
+    {
+      "title": "Возраст",
+      "answers": null,
+      "is_admin_only": false
+    },
+    {
+      "title": "Дата рождения",
+      "answers": null,
+      "is_admin_only": true
+    },
+    {
+      "title": "Место проживания",
+      "answers": null,
+      "is_admin_only": false
+    },
+    {
+      "title": "Рост",
+      "answers": null,
+      "is_admin_only": false
+    },
+    {
+      "title": "Вес",
+      "answers": null,
+      "is_admin_only": false
+    },
+    {
+      "title": "Национальность",
+      "answers": null,
+      "is_admin_only": false
+    },
+    {
+      "title": "Знание языков (какие, уровень)",
+      "answers": null,
+      "is_admin_only": false
+    },
+    {
+      "title": "Образование (учебное заведение, специальность)",
+      "answers": null,
+      "is_admin_only": false
+    },
+    {
+      "title": "Место работы",
+      "answers": null,
+      "is_admin_only": true
+    },
+    {
+      "title": "Достаток",
+      "answers": [
+        "<50 тыс.руб",
+        "50-100 тыс. руб",
+        "100-200 тыс.руб",
+        ">200 тыс.руб"
+      ],
+      "is_admin_only": true
+    },
+    {
+      "title": "Сведения о семье (полная/неполная, родители в браке/разведены, есть ли братья/сестра, их семейное положение, и т. д)",
+      "answers": null,
+      "is_admin_only": false
+    },
+    {
+      "title": "Семейное положение",
+      "answers": ["не был женат/не была замужем","разведён/разведена"],
+      "is_admin_only": false
+    },
+    {
+      "title": "Дети",
+      "answers": null,
+      "is_admin_only": false
+    },
+    {
+      "title": "Отношение к религии (соблюдающий, этнический, новичок, покрыта, и т.д, и т.п)",
+      "answers": null,
+      "is_admin_only": false
+    },
+    {
+      "title": "Готовность к переезду",
+      "answers": null,
+      "is_admin_only": false
+    },
+    {
+      "title": "О себе: (качества, хобби, состояние здоровья)",
+      "answers": null,
+      "is_admin_only": false
+    },
+    {
+      "title": "Требования к спутнику/спутнице",
+      "answers": null,
+      "is_admin_only": false
+    },
+    {
+      "title": "Допустимая разница в возрасте",
+      "answers": null,
+      "is_admin_only": false
+    },
+    {
+      "title": "Есть ли профессии, которые Вы бы не желали",
+      "answers": null,
+      "is_admin_only": false
+    }
+  ]
+}
