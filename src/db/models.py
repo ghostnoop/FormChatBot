@@ -37,7 +37,7 @@ class QuestionForm(BaseModel):
 class QuestionFormWithQuestion(BaseModel):
     question_form = fields.ForeignKeyField('models.QuestionForm', on_delete='CASCADE')
     question = fields.ForeignKeyField('models.Question', on_delete='CASCADE')
-    answer = fields.CharField(max_length=255)
+    answer = fields.CharField(max_length=255, null=True)
 
     class Meta:
         unique_together = (("question_form_id", "question_id"),)

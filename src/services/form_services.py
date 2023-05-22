@@ -1,6 +1,7 @@
 from typing import List
 
 from aiogram import types
+from aiogram import html
 
 from config import config
 from misc import bot
@@ -12,15 +13,20 @@ async def get_question(question_id):
     question = await Question.get_or_none(id=question_id)
     if question:
         title = question.title
+        if question.answers:
+            keyboard = answers_keyboard(question)
+        else:
+            keyboard = None
 
-        return title
+        return title, keyboard
+    return None, None
 
 
 def format_message(form_id, items: dict):
-    s = [f'<b>Номер анкеты</b>: #{form_id}<br>']
+    s = [f'<b>Номер анкеты</b>: #{form_id}']
     for k, v in items.items():
-        s.append(f'<b>{k}</b>: {v}<br>')
-    return ''.join(s)
+        s.append(html.bold(html.quote(f'{k}')) + html.quote(f' : {v}'))
+    return '\n\n'.join(s)
 
 
 async def form_send(form_id, questions: List[dict]):
@@ -45,12 +51,12 @@ async def form_channel_send(form_id):
     items = {}
     for question in questions:
         items[question.question.title] = question.answer
-
-    await bot.send_message(config.CHANNEL_ID, format_message(form_id, items), parse_mode='HTML')
+    text = format_message(form_id, items)
+    await bot.send_message(config.CHANNEL_ID, text, parse_mode='HTML')
 
 
 async def form_channel_admin_send(form_id):
-    questions = await QuestionFormWithQuestion.filter(question_form_id=form_id, question__is_admin_only=True,
+    questions = await QuestionFormWithQuestion.filter(question_form_id=form_id,
                                                       answer__isnull=False) \
         .select_related('question') \
         .order_by('question_id')
@@ -65,7 +71,7 @@ def start_keyboard():
     kb = [
         [types.KeyboardButton(text=consts.SKIP)]
     ]
-    keyboard = types.ReplyKeyboardMarkup(keyboard=kb)
+    keyboard = types.ReplyKeyboardMarkup(keyboard=kb, resize_keyboard=True)
     return keyboard
 
 
@@ -74,14 +80,23 @@ def middle_keyboard():
         [types.KeyboardButton(text=consts.SKIP)],
         [types.KeyboardButton(text=consts.BACK)]
     ]
-    keyboard = types.ReplyKeyboardMarkup(keyboard=kb)
+    keyboard = types.ReplyKeyboardMarkup(keyboard=kb, resize_keyboard=True)
     return keyboard
 
 
 def end_keyboard():
     kb = [
-        [types.KeyboardButton(text=consts.BACK)],
-        [types.KeyboardButton(text=consts.COMPLETE)]
+        [types.KeyboardButton(text=consts.COMPLETE)],
+        [types.KeyboardButton(text=consts.BACK)]
     ]
-    keyboard = types.ReplyKeyboardMarkup(keyboard=kb)
+    keyboard = types.ReplyKeyboardMarkup(keyboard=kb, resize_keyboard=True)
+    return keyboard
+
+
+def answers_keyboard(question: Question):
+    kb = [[]]
+    for i in question.answers:
+        kb[0].append(types.KeyboardButton(text=i))
+    kb.extend([[types.KeyboardButton(text=consts.BACK)]])
+    keyboard = types.ReplyKeyboardMarkup(keyboard=kb, resize_keyboard=True)
     return keyboard

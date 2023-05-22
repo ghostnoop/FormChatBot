@@ -5,6 +5,6 @@ services:
     environment:
       POSTGRES_DB: "habrdb"
       POSTGRES_USER: "habrpguser"
-      POSTGRES_PASSWORD: "pgpwd4habr"
+      POSTGRES_PASSWORD: "pgquesnorwe124"
     ports:
       - "0.0.0.0:5432:5432"
